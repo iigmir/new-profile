@@ -8,7 +8,7 @@ gulp.task('browser-sync', function()
 {
     browserSync.init({
         server: {
-            baseDir: "./public"
+            baseDir: "./docs"
         }
     });
 });
@@ -17,8 +17,8 @@ gulp.task('watch', function ()
 {
     gulp.watch("src/scss/*.scss", ['sass']);
     gulp.watch("src/js/*.js", ['jscompress']);
-    gulp.watch("public/*/*").on('change', browserSync.reload);
-    gulp.watch("public/*").on('change', browserSync.reload);
+    gulp.watch("docs/*/*").on('change', browserSync.reload);
+    gulp.watch("docs/*").on('change', browserSync.reload);
 });
 
 gulp.task('jscompress', function(cb)
@@ -27,7 +27,7 @@ gulp.task('jscompress', function(cb)
     ([
         gulp.src('src/js/*.js'),
         uglify(),
-        gulp.dest('public/js')
+        gulp.dest('docs/js')
     ],cb);
 });
 
@@ -37,7 +37,7 @@ gulp.task('sass', function()
         .pipe(gulpSass({
             outputStyle: 'compressed'
         }))
-        .pipe(gulp.dest("public/css"))
+        .pipe(gulp.dest("docs/css"))
         .pipe(browserSync.stream());
 });
 
