@@ -72,3 +72,58 @@ var my_works = new Vue
         }
     }
 });
+
+var last_updated = new Vue
+({
+    el:"footer",
+    data:
+    {
+        xhr_fail_msg:"Sorry, I can't give result due to some errors.",
+        xhr_okay:false,
+        repo_api:"https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",
+        updated_url:"",
+        update_date:"",
+        updater:"",
+    },
+    mounted:function()
+    {
+        var vdm = this;
+        function get_last_commit()
+        {
+            var glc_xhr = new XMLHttpRequest();
+            glc_xhr.onreadystatechange = function()
+            {
+                if ( glc_xhr.readyState === 4 )
+                {
+                    var glc_res = glc_xhr.response;
+                    get_submit_info( glc_res.object.url );
+                }
+            }
+            glc_xhr.open('GET', vdm.repo_api , true);
+            glc_xhr.responseType = "json";
+            glc_xhr.send('');
+        }
+
+        function get_submit_info( gsi_api )
+        {
+            var gsi_xhr = new XMLHttpRequest();
+            gsi_xhr.onreadystatechange = function()
+            {
+                if ( gsi_xhr.readyState === 4 )
+                {
+                    var gsi_res = gsi_xhr.response;
+                    // console.log( gsi_res );
+                    vdm.xhr_okay = true;
+                    vdm.updated_url = gsi_res.html_url;
+                    vdm.updater = gsi_res.committer.name;
+                    vdm.update_date = gsi_res.committer.date.replace(/T|Z/g," ");
+                    // console.log( vdm.updater );
+                }
+            }
+            gsi_xhr.open('GET', gsi_api , true);
+            gsi_xhr.responseType = "json";
+            gsi_xhr.send('');
+        }
+        get_last_commit();
+    }
+});
