@@ -116,7 +116,8 @@ var last_updated = new Vue
                     vdm.xhr_okay = true;
                     vdm.updated_url = gsi_res.html_url;
                     vdm.updater = gsi_res.committer.name;
-                    vdm.update_date = gsi_res.committer.date.replace(/T|Z/g," ");
+                    vdm.update_date = gsi_res.committer.date.replace(/T/g," ");
+                    vdm.update_date = gsi_res.committer.date.replace(/Z/g,"(GMT)");
                     // console.log( vdm.updater );
                 }
             }
