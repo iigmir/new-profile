@@ -49,7 +49,9 @@ var my_works = new Vue
                 link:"https://codepen.io/iigmir/pen/dGzWKL",
                 text:"顧名思義，點選數字與計算符號後，可以開始做計算"
             },{
-
+                name:"OpenStreetMap Notes",
+                link:"https://iigmir.github.io/osm-notes",
+                text:"介接 OpenStreetMap 的筆記"
             }
         ]
     },
