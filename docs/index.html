@@ -10,97 +10,100 @@
 </head>
 <body>
     <header>
-        <div class="row">
-            <div class="col col-8 push-middle push-center">
-                <h1 class="text-center">Hi, I am iigmir.</h1>
-                <ul id="nav_sns" class="text-center">
-                    <li v-for="i in infos">
-                        <a v-bind:href="i.link" v-bind:title="i.desc" target="_blank" aria-hidden="true">
-                            <i v-bind:class="i.fa"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <div class="row">
+        <div class="col col-8 push-middle push-center">
+            <h1 class="text-center">Hi, I am iigmir.</h1>
+            <ul id="nav_sns" class="text-center">
+                <li v-for="i in infos">
+                    <a v-bind:href="i.link" v-bind:title="i.desc" target="_blank" aria-hidden="true">
+                        <i v-bind:class="i.fa"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </div>
+
     </header>
     <main>
         <article>
-            <h2 class="text-center">My technolgy and skill</h2>
-            <div class="row auto">
-                <div class="col">
-                    <h3>HTML,CSS</h3>
-                    <ul>
-                        <li>RWD</li>
-                        <li>SCSS</li>
-                        <li>CSS3 Animation</li>
-                        <li>Kube, Bootstrap</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h3>JavaScript</h3>
-                    <ul>
-                        <li>jQuery</li>
-                        <li>Angular 1</li>
-                        <li>Vue</li>
-                        <li>npm: gulp</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h3>Backend</h3>
-                    <ul>
-                        <li title="能寫出簡易的讀寫功能網站如部落格，並利用前端層面的 JS 程式與後端互動">Ruby on Rails(Ruby)</li>
-                        <li title="有接觸過。可以修改 view 層面的外觀表現、並把資料傳給後端。">Laravel(PHP)</li>
-                    </ul>
-                </div>
-            </div>
-            <!--
-            <div class="row auto">
-                <div class="col">
-                    <h3>Familar Tools</h3>
-                    <ul>
-                        <li>Editor: Notepad++, Vim</li>
-                        <li>Version Control: Git</li>
-                        <li>Browser: Firefox</li>
-                    </ul>
-                </div>
-            </div>
-            -->
+<h2 class="text-center">My technolgy and skill</h2>
+<div class="row auto">
+    <div class="col">
+        <h3>HTML,CSS</h3>
+        <ul>
+            <li>RWD</li>
+            <li>SCSS</li>
+            <li>CSS3 Animation</li>
+            <li>Kube, Bootstrap</li>
+        </ul>
+    </div>
+    <div class="col">
+        <h3>JavaScript</h3>
+        <ul>
+            <li>jQuery</li>
+            <li>Angular 1</li>
+            <li>Vue</li>
+            <li>npm: gulp</li>
+        </ul>
+    </div>
+    <div class="col">
+        <h3>Backend</h3>
+        <ul>
+            <li title="能寫出簡易的讀寫功能網站如部落格，並利用前端層面的 JS 程式與後端互動">Ruby on Rails(Ruby)</li>
+            <li title="有接觸過。可以修改 view 層面的外觀表現、並把資料傳給後端。">Laravel(PHP)</li>
+        </ul>
+    </div>
+</div>
+<!--
+<div class="row auto">
+    <div class="col">
+        <h3>Familar Tools</h3>
+        <ul>
+            <li>Editor: Notepad++, Vim</li>
+            <li>Version Control: Git</li>
+            <li>Browser: Firefox</li>
+        </ul>
+    </div>
+</div>
+-->
+
         </article>
-        <article id="myworks_app">
-            <h2 class="text-center">My Practices</h2>
-            <div class="row" v-for="group in group_works">
-                <div class="col col-4" v-for="g in group">
-                    <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
-                    <p> {{ g.text }} </p>
-                </div>
-            </div>
-        </article>
-        <article>
-            <h2 class="text-center">My works</h2>
-            <div class="row auto">
-                <div class="col">
-                    <h3>Translation</h3>
-                    <ul>
-                        <li><a href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
-                        <li><a href="https://github.com/railstaichung/docs">railsbridge</a></li>
-                        <li><a href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h3>協做</h3>
-                    <ul>
-                        <li><a href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
-                    </ul>
-                </div>
-            </div>
-        </article>
+<article id="myworks_app">
+    <h2 class="text-center">My Practices</h2>
+    <div class="row" v-for="group in group_works">
+        <div class="col col-4" v-for="g in group">
+            <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
+            <p> {{ g.text }} </p>
+        </div>
+    </div>
+</article>
+
+<article>
+    <h2 class="text-center">My works</h2>
+    <div class="row auto">
+        <div class="col">
+            <h3>Translation</h3>
+            <ul>
+                <li><a href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
+                <li><a href="https://github.com/railstaichung/docs">railsbridge</a></li>
+                <li><a href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>協做</h3>
+            <ul>
+                <li><a href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
+            </ul>
+        </div>
+    </div>
+</article>
+
     </main>
-    <footer>
-        <a v-bind:href="updated_url" v-if="xhr_okay===true">
-            Last update was in {{ update_date }} by {{ updater }}
-        </a>
-        <span v-else> {{ xhr_fail_msg }} </span>
-    </footer>
+<footer>
+    <a v-bind:href="updated_url" v-if="xhr_okay===true"> Last update was in {{ update_date }} by {{ updater }} </a>
+    <span v-else> {{ xhr_fail_msg }} </span>
+</footer>
+
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/kube.min.js"></script>
     <script src="js/vue.min.js"></script>

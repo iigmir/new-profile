@@ -1,0 +1,29 @@
+<article id="myworks_app">
+    <h2 class="text-center">My Practices</h2>
+    <div class="row" v-for="group in group_works">
+        <div class="col col-4" v-for="g in group">
+            <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
+            <p> {{ g.text }} </p>
+        </div>
+    </div>
+</article>
+
+<article>
+    <h2 class="text-center">My works</h2>
+    <div class="row auto">
+        <div class="col">
+            <h3>Translation</h3>
+            <ul>
+                <li><a href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
+                <li><a href="https://github.com/railstaichung/docs">railsbridge</a></li>
+                <li><a href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>協做</h3>
+            <ul>
+                <li><a href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
+            </ul>
+        </div>
+    </div>
+</article>
