@@ -52,6 +52,18 @@ var my_works = new Vue
                 name:"OpenStreetMap Notes",
                 link:"https://iigmir.github.io/osm-notes",
                 text:"介接 OpenStreetMap 的筆記"
+            },{
+                name:"voteapp",
+                link:"https://github.com/iigmir/voteapp",
+                text:"某次寫的投票程式..."
+            },{
+                name:"松浦",
+                link:"https://github.com/iigmir/matsuura",
+                text:"自己撰寫的錯誤追蹤系統"
+            },{
+                name:"novelist",
+                link:"https://github.com/iigmir/novelist",
+                text:"可以讓人寫小說的程式"
             }
         ]
     },
@@ -114,12 +126,10 @@ var last_updated = new Vue
                 if ( gsi_xhr.readyState === 4 )
                 {
                     var gsi_res = gsi_xhr.response;
-                    // console.log( gsi_res );
                     vdm.xhr_okay = true;
                     vdm.updated_url = gsi_res.html_url;
                     vdm.updater = gsi_res.committer.name;
                     vdm.update_date = gsi_res.committer.date.replace(/T/g," ").replace(/Z/g,"(GMT)");
-                    // console.log( vdm.updater );
                 }
             }
             gsi_xhr.open('GET', gsi_api , true);
