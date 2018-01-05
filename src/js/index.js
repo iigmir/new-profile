@@ -77,7 +77,6 @@ var my_works = new Vue
         {
             var grouped_dst = [];
             var grouped_unit = 3;
-            //// wait_for_fill % fill_unit === 0
             for(var i=0;i<this.works_src.length; i+=grouped_unit )
             {
                 var i_tmp_array = [];

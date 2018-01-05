@@ -1,6 +1,6 @@
 <article id="myworks_app">
-    <h2 class="text-center">My Practices</h2>
-    <div class="row" v-for="group in group_works">
+    <h2>個人作品</h2>
+    <div class="row show" v-for="group in group_works" v-cloak>
         <div class="col col-4" v-for="g in group">
             <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
             <p> {{ g.text }} </p>
@@ -9,20 +9,21 @@
 </article>
 
 <article>
-    <h2 class="text-center">My works</h2>
+    <h2>其他作品</h2>
     <div class="row auto">
         <div class="col">
-            <h3>Translation</h3>
+            <h3>翻譯</h3>
             <ul>
-                <li><a href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
-                <li><a href="https://github.com/railstaichung/docs">railsbridge</a></li>
-                <li><a href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
+                <li><a target="_blank" href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
+                <li><a target="_blank" href="https://github.com/railstaichung/docs">railsbridge</a></li>
+                <li><a target="_blank" href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
             </ul>
         </div>
         <div class="col">
             <h3>協做</h3>
             <ul>
-                <li><a href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
+                <li><a target="_blank" href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
+                <li><a target="_blank" href="https://github.com/iigmir/tcbus">臺中市公車地圖</a></li>
             </ul>
         </div>
     </div>

@@ -40,13 +40,31 @@ header
 main
 {
     background:#f5f5f5;
+    article
+    {
+        max-width: 960px;
+        margin: 0 auto;
+        padding:1rem;
+        &:first-child
+        {
+            padding-top: 2rem;
+        }
+    }
+    *[v-cloak]
+    {
+        display: none;
+        .cube
+        {
+            display: block;
+            width:5rem;
+            height:5rem;
+            background-color: aqua;
+            margin: 0 auto;
+            animation:spin 2s linear infinite;
+        }
+    }
 }
-article
-{
-	max-width: 960px;
-	margin: 0 auto;
-    padding:1rem;
-}
+
 footer
 {
     padding:1rem;
@@ -63,3 +81,5 @@ footer
     padding:1rem;
 }
 // http://devtoolschallenger.com/
+
+@keyframes spin { 100% { transform:rotate(360deg); } }

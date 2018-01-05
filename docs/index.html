@@ -26,7 +26,19 @@
     </header>
     <main>
         <article>
-<h2 class="text-center">My technolgy and skill</h2>
+<h2>個人簡介</h2>
+<h3>自我簡評</h3>
+<blockquote>
+    喜歡低調、喜歡文字、喜歡自己動手、喜歡從無到有的感覺。<br />
+    從「不知道什麼是 DNS」開始,自學到今天的的網路開發者。
+</blockquote>
+<div class="hide">
+    <h3>自傳</h3>
+</div>
+
+        </article>
+        <article>
+<h2>技能簡覽</h2>
 <div class="row auto">
     <div class="col">
         <h3>HTML,CSS</h3>
@@ -34,7 +46,7 @@
             <li>RWD</li>
             <li>SCSS</li>
             <li>CSS3 Animation</li>
-            <li>Kube, Bootstrap</li>
+            <li>CSS framework: Kube, Bootstrap</li>
         </ul>
     </div>
     <div class="col">
@@ -44,6 +56,7 @@
             <li>Angular 1</li>
             <li>Vue</li>
             <li>npm: gulp</li>
+            <li>串接 JSON API</li>
         </ul>
     </div>
     <div class="col">
@@ -54,23 +67,10 @@
         </ul>
     </div>
 </div>
-<!--
-<div class="row auto">
-    <div class="col">
-        <h3>Familar Tools</h3>
-        <ul>
-            <li>Editor: Notepad++, Vim</li>
-            <li>Version Control: Git</li>
-            <li>Browser: Firefox</li>
-        </ul>
-    </div>
-</div>
--->
-
         </article>
 <article id="myworks_app">
-    <h2 class="text-center">My Practices</h2>
-    <div class="row" v-for="group in group_works">
+    <h2>個人作品</h2>
+    <div class="row show" v-for="group in group_works" v-cloak>
         <div class="col col-4" v-for="g in group">
             <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
             <p> {{ g.text }} </p>
@@ -79,20 +79,21 @@
 </article>
 
 <article>
-    <h2 class="text-center">My works</h2>
+    <h2>其他作品</h2>
     <div class="row auto">
         <div class="col">
-            <h3>Translation</h3>
+            <h3>翻譯</h3>
             <ul>
-                <li><a href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
-                <li><a href="https://github.com/railstaichung/docs">railsbridge</a></li>
-                <li><a href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
+                <li><a target="_blank" href="https://developer.mozilla.org/zh-TW/profiles/iigmir">MDN</a></li>
+                <li><a target="_blank" href="https://github.com/railstaichung/docs">railsbridge</a></li>
+                <li><a target="_blank" href="https://translatewiki.net/wiki/Translating:FreeCol">FreeCol</a></li>
             </ul>
         </div>
         <div class="col">
             <h3>協做</h3>
             <ul>
-                <li><a href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
+                <li><a target="_blank" href="https://github.com/moztw/www.moztw.org">www.moztw.org</a></li>
+                <li><a target="_blank" href="https://github.com/iigmir/tcbus">臺中市公車地圖</a></li>
             </ul>
         </div>
     </div>
@@ -106,8 +107,8 @@
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/kube.min.js"></script>
-    <!--<script src="js/vue.min.js"></script>-->
-    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/vue.min.js"></script>
+    <!--<script src="https://vuejs.org/js/vue.js"></script>-->
     <script src="js/index.js"></script>
 </body>
 </html>
