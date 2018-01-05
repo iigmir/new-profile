@@ -57,14 +57,18 @@ var my_works = new Vue
                 link:"https://github.com/iigmir/voteapp",
                 text:"某次寫的投票程式..."
             },{
-                name:"松浦",
-                link:"https://github.com/iigmir/matsuura",
-                text:"自己撰寫的錯誤追蹤系統"
+                name:"Takami",
+                link:"https://github.com/iigmir/Takami",
+                text:"抓取音樂清單的機器人"
             },{
                 name:"novelist",
                 link:"https://github.com/iigmir/novelist",
-                text:"可以讓人寫小說的程式"
-            }
+                text:"可以讓人寫小說的網站"
+            },{
+                name:"松浦",
+                link:"https://github.com/iigmir/matsuura",
+                text:"自己撰寫的錯誤追蹤系統"
+            },{},{}
         ]
     },
     computed:
@@ -73,6 +77,7 @@ var my_works = new Vue
         {
             var grouped_dst = [];
             var grouped_unit = 3;
+            //// wait_for_fill % fill_unit === 0
             for(var i=0;i<this.works_src.length; i+=grouped_unit )
             {
                 var i_tmp_array = [];
