@@ -16,6 +16,9 @@ var sns_link = new Vue
         },{
             link:"https://codepen.io/iigmir",
             fa:"fa fa-codepen",desc:"My Codepen"
+        },{
+            link:"mailto:roc120j@gmail.com",
+            fa:"fa fa-envelope-o",desc:"My Email"
         }]
     }
 });
@@ -55,15 +58,15 @@ var my_works = new Vue
             },{
                 name:"voteapp",
                 link:"https://github.com/iigmir/voteapp",
-                text:"某次寫的投票程式..."
+                text:"某次寫的投票程式"
             },{
                 name:"Takami",
                 link:"https://github.com/iigmir/Takami",
-                text:"抓取音樂清單的機器人"
+                text:"抓取 LoveLive 音樂清單的機器人"
             },{
                 name:"novelist",
                 link:"https://github.com/iigmir/novelist",
-                text:"可以讓人寫小說的網站"
+                text:"可以讓人寫小說的小作品"
             },{
                 name:"松浦",
                 link:"https://github.com/iigmir/matsuura",
