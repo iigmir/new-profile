@@ -31,9 +31,9 @@ var my_works = new Vue
         works_src :
         [
             {
-                name:"IISMMX's Rails Blog",
+                name:"露比的銳思",
                 link:"https://iismmx-rails-blog.herokuapp.com",
-                text:"我用Ruby on Rails 架設的部落格。主要撰寫一些關於Ruby on Rails相關問題的文章。"
+                text:"我用Ruby on Rails 架設的部落格。主要撰寫一些網路開發的文章。"
             },
             {
                 name:"民國西元換算器",
@@ -44,13 +44,9 @@ var my_works = new Vue
                 link:"https://iigmir.github.io/angularjs-notes/",
                 text:"學習 Angularjs 1 的一些語法筆記"
             },{
-                name:"維基百科搜尋器",
-                link:"https://codepen.io/iigmir/pen/dGBORB",
-                text:"串接維基百科的 API"
-            },{
-                name:"計算機",
-                link:"https://codepen.io/iigmir/pen/dGzWKL",
-                text:"顧名思義，點選數字與計算符號後，可以開始做計算"
+                name:"New profile in Codepen",
+                link:"https://codepen.io/iigmir/pen/MrxmgK",
+                text:"Codepen 作品概覽"
             },{
                 name:"OpenStreetMap Notes",
                 link:"https://iigmir.github.io/osm-notes",
@@ -71,7 +67,7 @@ var my_works = new Vue
                 name:"松浦",
                 link:"https://github.com/iigmir/matsuura",
                 text:"自己撰寫的錯誤追蹤系統"
-            },{},{}
+            }
         ]
     },
     computed:
