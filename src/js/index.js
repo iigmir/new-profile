@@ -147,6 +147,13 @@ $(document).scroll(function()
 {
     var scroll_over_half_height = ( $("header").height() / 1.5) < $(document).scrollTop();
     var navigate_target_positison = scroll_over_half_height ? "#navitop" : "#naviend";
-    $(".nav-arrow a i").toggleClass("fa-arrow-down").toggleClass("fa-arrow-up");
     $(".nav-arrow a").attr("href", navigate_target_positison );
+    if( scroll_over_half_height )
+    {   // I want to toggleClass, too. However there's bug when scroll via toggleClass.
+        $(".nav-arrow a i").removeClass("fa-arrow-down").addClass("fa-arrow-up");
+    }
+    else
+    {
+        $(".nav-arrow a i").addClass("fa-arrow-down").removeClass("fa-arrow-up");
+    }
 });
