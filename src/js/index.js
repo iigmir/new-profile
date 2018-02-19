@@ -142,3 +142,11 @@ var last_updated = new Vue
         get_last_commit();
     }
 });
+
+$(document).scroll(function()
+{
+    var scroll_over_half_height = ( $("header").height() / 1.5) < $(document).scrollTop();
+    var navigate_target_positison = scroll_over_half_height ? "#navitop" : "#naviend";
+    $(".nav-arrow a i").toggleClass("fa-arrow-down").toggleClass("fa-arrow-up");
+    $(".nav-arrow a").attr("href", navigate_target_positison );
+});
