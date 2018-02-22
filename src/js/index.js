@@ -52,22 +52,18 @@ var my_works = new Vue
                 link:"https://iigmir.github.io/osm-notes",
                 text:"介接 OpenStreetMap 的筆記"
             },{
-                name:"voteapp",
-                link:"https://github.com/iigmir/voteapp",
-                text:"某次寫的投票程式"
-            },{
                 name:"Takami",
                 link:"https://github.com/iigmir/Takami",
                 text:"抓取 LoveLive 音樂清單的機器人"
             },{
+                name:"voteapp",
+                link:"https://github.com/iigmir/voteapp",
+                text:"某次寫的投票程式"
+            },{
                 name:"novelist",
                 link:"https://github.com/iigmir/novelist",
                 text:"可以讓人寫小說的小作品"
-            },{
-                name:"松浦",
-                link:"https://github.com/iigmir/matsuura",
-                text:"自己撰寫的錯誤追蹤系統"
-            }
+            },{}
         ]
     },
     computed:
