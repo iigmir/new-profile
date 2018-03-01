@@ -1,65 +1,74 @@
-@keyframes fadein-start { from { opacity:0; } to { opacity:1; } }
+@keyframes fadein-boot { from { opacity:0; } to { opacity:1; } }
+
+body{ background-color: #f5f5f5; }
+
 header
-{
+{   // <header> and SNS bar
+    $header_text: #CEF;
+
     height:90vh;
     background:linear-gradient(45deg, blue, aqua);
+    display: grid;
     h1
     {
-        color:#CEF;
-        animation: 1s fadein-start;
+        color:$header_text;
+        text-align: center;
+        animation: 1s fadein-boot;
     }
     #nav_sns
     {
         margin:1rem 0;
-        animation: 2s fadein-start;
+        animation: 2s fadein-boot;
         li
         {
             display:inline-block;
             margin-right:1rem;
             a
             {
-                color:#CEF;
+                color:$header_text;
                 transition: color 0.2s ease;
                 &:hover
                 {
                     color:#A00;
                     transition: color 0.2s linear;
                 }
-                i
-                {
-                    font-size:3rem;
-                }
+                i { font-size:3rem; }
             }
         }
     }
     & > div
     {
-        height:90%;
+        margin: auto;
     }
 }
+
 div.nav-arrow
-{
+{   // The guide arrow under <header>
     height: 10vh;
     display: flex;
     align-items:center;
     justify-content:center;
-    background:#f5f5f5;
 }
+
 main
 {
-    background:#f5f5f5;
+    margin: 0 auto;
+    max-width: 960px;
     h2
     {
         padding-left: 1rem;
     }
     article
     {
-        max-width: 960px;
-        margin: 0 auto;
         padding:1rem;
         &:first-child
         {
             padding-top: 2rem;
+        }
+        &.wrapper
+        {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
         }
     }
     *[v-cloak]

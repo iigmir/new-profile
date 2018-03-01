@@ -10,19 +10,16 @@
 </head>
 <body>
     <header id="navitop">
-    <div class="row">
-        <div class="col col-8 push-middle push-center">
-            <h1 class="text-center">Hi, I am iigmir.</h1>
-            <ul id="nav_sns" class="text-center">
-                <li v-for="i in infos">
-                    <a v-bind:href="i.link" v-bind:title="i.desc" target="_blank" aria-hidden="true">
-                        <i v-bind:class="i.fa"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
+<div>
+    <h1>Hi, I am iigmir.</h1>
+    <ul id="nav_sns" class="text-center">
+        <li v-for="i in infos">
+            <a v-bind:href="i.link" v-bind:title="i.desc" target="_blank" aria-hidden="true">
+                <i v-bind:class="i.fa"></i>
+            </a>
+        </li>
+    </ul>
+</div>
     </header>
     <div id="naviend" class="nav-arrow">
         <a href="#naviend">
@@ -30,7 +27,7 @@
         </a>
     </div>
     <main>
-        <article>
+        <article id="intro">
 <h2>個人簡介</h2>
 
 <section>
@@ -53,7 +50,7 @@
     <p>若有幸與公司共事,我除了希望專注前端開發趨勢外,也會嘗試深入理解後端開發,最終走向網站全端開發。</p>
 </section>
         </article>
-        <article>
+        <article id="skill">
 <h2>技能簡覽</h2>
 <div class="row auto">
     <div class="col">
@@ -83,7 +80,7 @@
         </ul>
     </div>
 </div>
-        </article>
+        </article id="works">
 <article id="myworks_app">
     <h2>個人作品</h2>
     <div class="row show" v-for="group in group_works" v-cloak>
