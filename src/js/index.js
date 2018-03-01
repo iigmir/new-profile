@@ -55,7 +55,8 @@ var my_works = new Vue
                 name:"Takami",
                 link:"https://github.com/iigmir/Takami",
                 text:"抓取 LoveLive 音樂清單的機器人"
-            },{
+            }
+            /*,{
                 name:"voteapp",
                 link:"https://github.com/iigmir/voteapp",
                 text:"某次寫的投票程式"
@@ -63,7 +64,7 @@ var my_works = new Vue
                 name:"novelist",
                 link:"https://github.com/iigmir/novelist",
                 text:"可以讓人寫小說的小作品"
-            },{}
+            },{}*/
         ]
     },
     computed:
