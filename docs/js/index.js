@@ -1,1 +1,118 @@
-var sns_link=new Vue({el:"#nav_sns",data:{infos:[{link:"https://iismmx-rails-blog.herokuapp.com",fa:"fa fa-book",desc:"My blog"},{link:"https://developer.mozilla.org/zh-TW/profiles/iigmir",fa:"fa fa-firefox",desc:"My MDN"},{link:"https://github.com/iigmir",fa:"fa fa-github",desc:"My Github"},{link:"https://codepen.io/iigmir",fa:"fa fa-codepen",desc:"My Codepen"},{link:"mailto:roc120j@gmail.com",fa:"fa fa-envelope-o",desc:"My Email"}]}}),my_works=new Vue({el:"#myworks_app",data:{works_src:[{name:"露比的銳思",link:"https://iismmx-rails-blog.herokuapp.com",text:"我用Ruby on Rails 架設的部落格。主要撰寫一些網路開發的文章。"},{name:"民國西元換算器",link:"https://addons.mozilla.org/en-US/firefox/addon/minguoyear-convert",text:"把民國紀元與西元互換的小套件。"},{name:"Angular Notes",link:"https://iigmir.github.io/angularjs-notes/",text:"學習 Angularjs 1 的一些語法筆記"},{name:"New profile in Codepen",link:"https://codepen.io/iigmir/pen/MrxmgK",text:"Codepen 作品概覽"},{name:"OpenStreetMap Notes",link:"https://iigmir.github.io/osm-notes",text:"介接 OpenStreetMap 的筆記"},{name:"Takami",link:"https://github.com/iigmir/Takami",text:"抓取 LoveLive 音樂清單的機器人"},{name:"ijk",link:"https://github.com/iigmir/ijk",text:"簡易函式庫，目標是做得像 jQuery"},{},{}]},computed:{group_works:function(){for(var e=[],a=0;a<this.works_src.length;a+=3){for(var t=[],o=0;o<3;o++)t.push(this.works_src[a+o]);e.push(t)}return e}}}),last_updated=new Vue({el:"footer",data:{xhr_fail_msg:"Sorry, I can't give result due to some errors.",xhr_okay:!1,repo_api:"https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",updated_url:"",update_date:"",updater:""},mounted:function(){function e(e){var t=new XMLHttpRequest;t.onreadystatechange=function(){if(4===t.readyState){var e=t.response;a.xhr_okay=!0,a.updated_url=e.html_url,a.updater=e.committer.name,a.update_date=e.committer.date.replace(/T/g," ").replace(/Z/g,"(GMT)")}},t.open("GET",e,!0),t.responseType="json",t.send("")}var a=this;!function(){var t=new XMLHttpRequest;t.onreadystatechange=function(){4===t.readyState&&e(t.response.object.url)},t.open("GET",a.repo_api,!0),t.responseType="json",t.send("")}()}});$(document).scroll(function(){var e=$("header").height()/1.5<$(document).scrollTop(),a=e?"#navitop":"#naviend";$(".nav-arrow a").attr("href",a),e?$(".nav-arrow a i").removeClass("fa-arrow-down").addClass("fa-arrow-up"):$(".nav-arrow a i").addClass("fa-arrow-down").removeClass("fa-arrow-up")});
+"use strict";
+
+var app = new Vue({
+  el: "#app",
+  data: function data() {
+    return {
+      xhr_fail_msg: "Sorry, I can't give result due to some errors.",
+      xhr_okay: false,
+      repo_api: "https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",
+      updated_url: "",
+      update_date: "",
+      updater: "",
+      works_src: [{
+        name: "民國西元換算器",
+        link: "https://addons.mozilla.org/en-US/firefox/addon/minguoyear-convert",
+        text: "把民國紀元與西元互換的小套件。"
+      }, {
+        name: "Angular Notes",
+        link: "https://iigmir.github.io/angularjs-notes/",
+        text: "學習 Angularjs 1 的一些語法筆記"
+      }, {
+        name: "New profile in Codepen",
+        link: "https://codepen.io/iigmir/pen/MrxmgK",
+        text: "Codepen 作品概覽"
+      }, {
+        name: "OpenStreetMap Notes",
+        link: "https://iigmir.github.io/osm-notes",
+        text: "介接 OpenStreetMap 的筆記"
+      }, {
+        name: "Takami",
+        link: "https://github.com/iigmir/Takami",
+        text: "抓取 LoveLive 音樂清單的機器人"
+      }],
+      sns_info: [{
+        link: "https://developer.mozilla.org/zh-TW/profiles/iigmir",
+        fa: "fa fa-firefox",
+        desc: "My MDN"
+      }, {
+        link: "https://github.com/iigmir",
+        fa: "fa fa-github",
+        desc: "My Github"
+      }, {
+        link: "https://codepen.io/iigmir",
+        fa: "fa fa-codepen",
+        desc: "My Codepen"
+      }, {
+        link: "mailto:roc120j@gmail.com",
+        fa: "fa fa-envelope-o",
+        desc: "My Email"
+      }]
+    };
+  },
+  computed: {
+    group_works: function group_works() {
+      var _this = this;
+
+      // Expect [{},{},{},{},{},{}] to be [[{},{},{}],[{},{},{}]]
+      var new_array = [];
+      var tmp_array = [];
+      this.works_src.map(function (elem, index) {
+        var current_index = index + 1;
+        var group_number = 3;
+        tmp_array.push(elem);
+
+        if (current_index % group_number === 0 || current_index === _this.works_src.length) {
+          new_array.push(tmp_array);
+          tmp_array = [];
+        }
+      });
+      return new_array;
+    }
+  },
+  mounted: function mounted() {
+    this.request_log();
+  },
+  methods: {
+    request_log: function request_log() {
+      var _this2 = this;
+
+      var get_repo = function get_repo(url) {
+        fetch(url).then(function (repo_res) {
+          return repo_res.json();
+        }).then(function (repo_json) {
+          return get_info(repo_json.object.url);
+        });
+      };
+
+      var get_info = function get_info(url) {
+        fetch(url).then(function (repo_res) {
+          return repo_res.json();
+        }).then(function (repo_json) {
+          return _this2.ajax_render(repo_json);
+        });
+      };
+
+      get_repo(this.repo_api);
+    },
+    ajax_render: function ajax_render(info) {
+      this.xhr_okay = true;
+      this.updated_url = info.html_url;
+      this.updater = info.committer.name;
+      this.update_date = new Date(info.committer.date).toLocaleString();
+    }
+  }
+}); // $(document).scroll(function()
+// {
+//     var scroll_over_half_height = ( $("header").height() / 1.5) < $(document).scrollTop();
+//     var navigate_target_positison = scroll_over_half_height ? "#navitop" : "#naviend";
+//     $(".nav-arrow a").attr("href", navigate_target_positison );
+//     if( scroll_over_half_height )
+//     {   // I want to toggleClass, too. However there's bug when scroll via toggleClass.
+//         $(".nav-arrow a i").removeClass("fa-arrow-down").addClass("fa-arrow-up");
+//     }
+//     else
+//     {
+//         $(".nav-arrow a i").addClass("fa-arrow-down").removeClass("fa-arrow-up");
+//     }
+// });

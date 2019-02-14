@@ -9,28 +9,34 @@
     <link rel="stylesheet" href="css/index.css"/>
 </head>
 <body>
-    <header id="navitop">
-        <!-- @@include ./header.html-->
-    </header>
-    <div id="naviend" class="nav-arrow">
-        <a href="#naviend">
-            <i class="fa fa-arrow-down fa-2x"></i>
-        </a>
+    <div id="app">
+        <header id="navitop">
+            <!-- @@include ./header.html-->
+        </header>
+        <div id="naviend" class="nav-arrow">
+            <a href="#naviend">
+                <i class="fa fa-arrow-down fa-2x"></i>
+            </a>
+        </div>
+        <main>
+            <article id="intro">
+                <!-- @@include ./intro.html-->
+            </article>
+            <article id="skill">
+                <!-- @@include ./skill.html-->
+            </article>
+            <!-- id="works" -->
+            <!-- @@include ./works.html-->
+        </main>
+        <footer>
+            <a v-bind:href="updated_url" v-if="xhr_okay===true"> Last update was in {{ update_date }} by {{ updater }} </a>
+            <span v-else> {{ xhr_fail_msg }} </span>
+        </footer>
     </div>
-    <main>
-        <article id="intro">
-            <!-- @@include ./intro.html-->
-        </article>
-        <article id="skill">
-            <!-- @@include ./skill.html-->
-        </article id="works">
-        <!-- @@include ./works.html-->
-    </main>
-    <!-- @@include ./footer.html-->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/kube.min.js"></script>
-    <script src="js/vue.min.js"></script>
-    <!--<script src="https://vuejs.org/js/vue.js"></script>-->
+    <!-- <script src="js/vue.min.js"></script> -->
+    <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

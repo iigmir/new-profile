@@ -1,7 +1,7 @@
 <div>
     <h1>Hi, I am iigmir.</h1>
     <ul id="nav_sns" class="text-center">
-        <li v-for="i in infos">
+        <li v-for="i in sns_info" v-bind:key="i.desc">
             <a v-bind:href="i.link" v-bind:title="i.desc" target="_blank" aria-hidden="true">
                 <i v-bind:class="i.fa"></i>
             </a>

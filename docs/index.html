@@ -9,25 +9,26 @@
     <link rel="stylesheet" href="css/index.css"/>
 </head>
 <body>
-    <header id="navitop">
+    <div id="app">
+        <header id="navitop">
 <div>
     <h1>Hi, I am iigmir.</h1>
     <ul id="nav_sns" class="text-center">
-        <li v-for="i in infos">
+        <li v-for="i in sns_info" v-bind:key="i.desc">
             <a v-bind:href="i.link" v-bind:title="i.desc" target="_blank" aria-hidden="true">
                 <i v-bind:class="i.fa"></i>
             </a>
         </li>
     </ul>
 </div>
-    </header>
-    <div id="naviend" class="nav-arrow">
-        <a href="#naviend">
-            <i class="fa fa-arrow-down fa-2x"></i>
-        </a>
-    </div>
-    <main>
-        <article id="intro">
+        </header>
+        <div id="naviend" class="nav-arrow">
+            <a href="#naviend">
+                <i class="fa fa-arrow-down fa-2x"></i>
+            </a>
+        </div>
+        <main>
+            <article id="intro">
 <h2>個人簡介</h2>
 
 <section>
@@ -49,8 +50,8 @@
     <p>離職後，除了整理作品集外，還寫了小作品如網路爬蟲、任務執行器等。</p>
     <p>若有幸與公司共事,我除了希望專注前端開發趨勢外,也會嘗試深入理解後端開發,最終走向網站全端開發。</p>
 </section>
-        </article>
-        <article id="skill">
+            </article>
+            <article id="skill">
 <h2>技能簡覽</h2>
 <div class="row auto">
     <div class="col col-4">
@@ -86,10 +87,12 @@
     <div class="col col-4">
         <h3>JavaScript</h3>
         <dl>
+            <dt>ES6</dt>
+            <dd>我頗喜歡這次更動：除了作用域以外、箭頭函式、新字串與物件的表達式⋯⋯等功能，能令開發方便很多。</dd>
             <dt>Vue.JS</dt>
             <dd>主要專精的框架。可以用 Vue 開發 SPA 程式。</dd>
             <dt>jQuery</dt>
-            <dd>算基本配備。知道選擇器用法，也大概知道裡面的 <code>$.ajax</code> 如何使用。</dd>
+            <dd>知道基本的選擇器用法。</dd>
             <dt>Angular 1</dt>
             <dd> <a href="https://iigmir.github.io/angularjs-notes/">我寫了個筆記</a>。 </dd>
             <dt>npm: gulp</dt>
@@ -106,10 +109,11 @@
         </dl>
     </div>
 </div>
-        </article id="works">
+            </article>
+            <!-- id="works" -->
 <article id="myworks_app">
     <h2>個人作品</h2>
-    <div class="row show" v-for="group in group_works" v-cloak>
+    <div class="row show" v-for="group in group_works">
         <div class="col col-4" v-for="g in group">
             <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
             <p> {{ g.text }} </p>
@@ -137,16 +141,16 @@
         </div>
     </div>
 </article>
-    </main>
-<footer>
-    <a v-bind:href="updated_url" v-if="xhr_okay===true"> Last update was in {{ update_date }} by {{ updater }} </a>
-    <span v-else> {{ xhr_fail_msg }} </span>
-</footer>
-
+        </main>
+        <footer>
+            <a v-bind:href="updated_url" v-if="xhr_okay===true"> Last update was in {{ update_date }} by {{ updater }} </a>
+            <span v-else> {{ xhr_fail_msg }} </span>
+        </footer>
+    </div>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/kube.min.js"></script>
-    <script src="js/vue.min.js"></script>
-    <!--<script src="https://vuejs.org/js/vue.js"></script>-->
+    <!-- <script src="js/vue.min.js"></script> -->
+    <script src="https://vuejs.org/js/vue.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <article id="myworks_app">
     <h2>個人作品</h2>
-    <div class="row show" v-for="group in group_works" v-cloak>
+    <div class="row show" v-for="group in group_works">
         <div class="col col-4" v-for="g in group">
             <h3><a v-bind:href="g.link" target="_blank">{{ g.name }}</a></h3>
             <p> {{ g.text }} </p>

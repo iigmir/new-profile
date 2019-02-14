@@ -1,41 +1,17 @@
-var sns_link = new Vue
+const app  = new Vue
 ({
-    el:"#nav_sns",
-    data:
+    el: "#app",
+    data()
     {
-        infos:
-        [{
-            link:"https://iismmx-rails-blog.herokuapp.com",
-            fa:"fa fa-book",desc:"My blog"
-        },{
-            link:"https://developer.mozilla.org/zh-TW/profiles/iigmir",
-            fa:"fa fa-firefox",desc:"My MDN"
-        },{
-            link:"https://github.com/iigmir",
-            fa:"fa fa-github",desc:"My Github"
-        },{
-            link:"https://codepen.io/iigmir",
-            fa:"fa fa-codepen",desc:"My Codepen"
-        },{
-            link:"mailto:roc120j@gmail.com",
-            fa:"fa fa-envelope-o",desc:"My Email"
-        }]
-    }
-});
-
-var my_works = new Vue
-({
-    el: '#myworks_app',
-    data:
-    {
-        works_src :
-        [
-            {
-                name:"露比的銳思",
-                link:"https://iismmx-rails-blog.herokuapp.com",
-                text:"我用Ruby on Rails 架設的部落格。主要撰寫一些網路開發的文章。"
-            },
-            {
+        return {
+            xhr_fail_msg:"Sorry, I can't give result due to some errors.",
+            xhr_okay:false,
+            repo_api:"https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",
+            updated_url:"",
+            update_date:"",
+            updater:"",
+            works_src :
+            [{
                 name:"民國西元換算器",
                 link:"https://addons.mozilla.org/en-US/firefox/addon/minguoyear-convert",
                 text:"把民國紀元與西元互換的小套件。"
@@ -55,97 +31,94 @@ var my_works = new Vue
                 name:"Takami",
                 link:"https://github.com/iigmir/Takami",
                 text:"抓取 LoveLive 音樂清單的機器人"
+            }],
+            sns_info:
+            [{
+                link:"https://developer.mozilla.org/zh-TW/profiles/iigmir",
+                fa:"fa fa-firefox",
+                desc:"My MDN"
             },{
-                name:"ijk",
-                link:"https://github.com/iigmir/ijk",
-                text:"簡易函式庫，目標是做得像 jQuery"
-            },{},{}
-        ]
+                link:"https://github.com/iigmir",
+                fa:"fa fa-github",
+                desc:"My Github"
+            },{
+                link:"https://codepen.io/iigmir",
+                fa:"fa fa-codepen",
+                desc:"My Codepen"
+            },{
+                link:"mailto:roc120j@gmail.com",
+                fa:"fa fa-envelope-o",
+                desc:"My Email"
+            }]
+        };
     },
     computed:
     {
-        group_works: function()
-        {
-            var grouped_dst = [];
-            var grouped_unit = 3;
-            for(var i=0;i<this.works_src.length; i+=grouped_unit )
+        group_works()
+        {   // Expect [{},{},{},{},{},{}] to be [[{},{},{}],[{},{},{}]]
+            let new_array = [];
+            let tmp_array = [];
+            this.works_src.map( (elem, index) =>
             {
-                var i_tmp_array = [];
-                for (var j=0; j<grouped_unit ;j++)
+                let current_index = index + 1;
+                let group_number = 3;
+                tmp_array.push(elem);
+                if (
+                    current_index % group_number === 0 ||
+                    current_index === this.works_src.length
+                )
                 {
-                    i_tmp_array.push( this.works_src[i+j] );
+                    new_array.push(tmp_array);
+                    tmp_array = [];
                 }
-                grouped_dst.push( i_tmp_array );
-            }
-            return grouped_dst;
+            });
+            return new_array;
         }
-    }
-});
-
-var last_updated = new Vue
-({
-    el:"footer",
-    data:
-    {
-        xhr_fail_msg:"Sorry, I can't give result due to some errors.",
-        xhr_okay:false,
-        repo_api:"https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",
-        updated_url:"",
-        update_date:"",
-        updater:"",
     },
-    mounted:function()
+    mounted()
     {
-        var vdm = this;
-        function get_last_commit()
+        this.request_log();
+    },
+    methods:
+    {
+        request_log()
         {
-            var glc_xhr = new XMLHttpRequest();
-            glc_xhr.onreadystatechange = function()
+            let get_repo = ( url ) =>
             {
-                if ( glc_xhr.readyState === 4 )
-                {
-                    var glc_res = glc_xhr.response;
-                    get_submit_info( glc_res.object.url );
-                }
+                fetch( url )
+                .then( repo_res => repo_res.json() )
+                .then( repo_json => get_info(repo_json.object.url) );
             };
-            glc_xhr.open('GET', vdm.repo_api , true);
-            glc_xhr.responseType = "json";
-            glc_xhr.send('');
-        }
-
-        function get_submit_info( gsi_api )
+            let get_info = (url) =>
+            {
+                fetch( url )
+                .then( repo_res => repo_res.json() )
+                .then( repo_json => this.ajax_render(repo_json) );
+            };
+            get_repo( this.repo_api );
+        },
+        ajax_render(info)
         {
-            var gsi_xhr = new XMLHttpRequest();
-            gsi_xhr.onreadystatechange = function()
-            {
-                if ( gsi_xhr.readyState === 4 )
-                {
-                    var gsi_res = gsi_xhr.response;
-                    vdm.xhr_okay = true;
-                    vdm.updated_url = gsi_res.html_url;
-                    vdm.updater = gsi_res.committer.name;
-                    vdm.update_date = gsi_res.committer.date.replace(/T/g," ").replace(/Z/g,"(GMT)");
-                }
-            };
-            gsi_xhr.open('GET', gsi_api , true);
-            gsi_xhr.responseType = "json";
-            gsi_xhr.send('');
+            this.xhr_okay = true;
+            this.updated_url = info.html_url;
+            this.updater = info.committer.name;
+            this.update_date = new Date(info.committer.date).toLocaleString();
         }
-        get_last_commit();
-    }
+    },
 });
 
-$(document).scroll(function()
-{
-    var scroll_over_half_height = ( $("header").height() / 1.5) < $(document).scrollTop();
-    var navigate_target_positison = scroll_over_half_height ? "#navitop" : "#naviend";
-    $(".nav-arrow a").attr("href", navigate_target_positison );
-    if( scroll_over_half_height )
-    {   // I want to toggleClass, too. However there's bug when scroll via toggleClass.
-        $(".nav-arrow a i").removeClass("fa-arrow-down").addClass("fa-arrow-up");
-    }
-    else
-    {
-        $(".nav-arrow a i").addClass("fa-arrow-down").removeClass("fa-arrow-up");
-    }
-});
+// $(document).scroll(function()
+// {
+//     var scroll_over_half_height = ( $("header").height() / 1.5) < $(document).scrollTop();
+//     var navigate_target_positison = scroll_over_half_height ? "#navitop" : "#naviend";
+//     $(".nav-arrow a").attr("href", navigate_target_positison );
+//     if( scroll_over_half_height )
+//     {   // I want to toggleClass, too. However there's bug when scroll via toggleClass.
+//         $(".nav-arrow a i").removeClass("fa-arrow-down").addClass("fa-arrow-up");
+//     }
+//     else
+//     {
+//         $(".nav-arrow a i").addClass("fa-arrow-down").removeClass("fa-arrow-up");
+//     }
+// });
+
