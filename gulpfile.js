@@ -1,9 +1,8 @@
-var gulp        = require('gulp');
-var browserSync = require('browser-sync').create();
-var gulpSass    = require('gulp-sass');
-var uglify      = require('gulp-uglify');
-var pump        = require('pump');
-var extender    = require('gulp-html-extend');
+const gulp        = require('gulp');
+const browserSync = require('browser-sync').create();
+const gulpSass    = require('gulp-sass');
+const babel       = require('gulp-babel');
+const extender    = require('gulp-html-extend');
 
 gulp.task('browser-sync', function()
 {
@@ -15,12 +14,12 @@ gulp.task('browser-sync', function()
 
 gulp.task('jscompress', function(cb)
 {
-    pump
-    ([
-        gulp.src('src/js/*.js'),
-        uglify(),
-        gulp.dest('docs/js')
-    ],cb);
+    let babel_setting = {
+        presets: ["@babel/env"]
+    };
+    return gulp.src("./src/js/index.js")
+    .pipe(babel(babel_setting))
+    .pipe(gulp.dest("./docs/js"));
 });
 
 gulp.task('sass', function()
