@@ -4,6 +4,7 @@ var app = new Vue({
   el: "#app",
   data: function data() {
     return {
+      scroll_over_header: false,
       xhr_fail_msg: "Sorry, I can't give result due to some errors.",
       xhr_okay: false,
       repo_api: "https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",
@@ -77,10 +78,28 @@ var app = new Vue({
       }
 
       return msg;
+    },
+    link_binding: function link_binding() {
+      var href = "#naviend";
+
+      if (this.scroll_over_header === true) {
+        href = "#navitop";
+      }
+
+      return {
+        href: href,
+        arrow_class: {
+          "fa": true,
+          "fa-2x": true,
+          "fa-arrow-up": this.scroll_over_header === true,
+          "fa-arrow-down": this.scroll_over_header === false
+        }
+      };
     }
   },
   mounted: function mounted() {
     this.request_log();
+    window.addEventListener("scroll", this.scroll_arrow);
   },
   methods: {
     request_log: function request_log() {
@@ -109,19 +128,12 @@ var app = new Vue({
       this.updated_url = info.html_url;
       this.updater = info.committer.name;
       this.update_date = new Date(info.committer.date).toLocaleString();
+    },
+    scroll_arrow: function scroll_arrow() {
+      this.scroll_over_header = window.scrollY > this.$refs.header.clientHeight / 1.5;
     }
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener("scroll", this.scroll_arrow);
   }
-}); // $(document).scroll(function()
-// {
-//     var scroll_over_half_height = ( $("header").height() / 1.5) < $(document).scrollTop();
-//     var navigate_target_positison = scroll_over_half_height ? "#navitop" : "#naviend";
-//     $(".nav-arrow a").attr("href", navigate_target_positison );
-//     if( scroll_over_half_height )
-//     {   // I want to toggleClass, too. However there's bug when scroll via toggleClass.
-//         $(".nav-arrow a i").removeClass("fa-arrow-down").addClass("fa-arrow-up");
-//     }
-//     else
-//     {
-//         $(".nav-arrow a i").addClass("fa-arrow-down").removeClass("fa-arrow-up");
-//     }
-// });
+});

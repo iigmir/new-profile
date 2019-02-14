@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-        <header id="navitop">
+        <header id="navitop" ref="header">
 <div>
     <h1>Hi, I am iigmir.</h1>
     <ul id="nav_sns" class="text-center">
@@ -23,8 +23,8 @@
 </div>
         </header>
         <div id="naviend" class="nav-arrow">
-            <a href="#naviend">
-                <i class="fa fa-arrow-down fa-2x"></i>
+            <a v-bind:href="link_binding.href">
+                <i v-bind:class="link_binding.arrow_class"></i>
             </a>
         </div>
         <main>
@@ -110,7 +110,6 @@
     </div>
 </div>
             </article>
-            <!-- id="works" -->
 <article id="myworks_app">
     <h2>個人作品</h2>
     <div class="row show" v-for="group in group_works">
