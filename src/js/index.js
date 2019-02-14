@@ -73,6 +73,15 @@ const app  = new Vue
                 }
             });
             return new_array;
+        },
+        xhr_message()
+        {
+            let msg = "Sorry, I can't give result due to some errors.";
+            if( this.xhr_okay === true )
+            {
+                msg = `Update in ${ this.update_date } by ${ this.updater }`;
+            }
+            return msg;
         }
     },
     mounted()

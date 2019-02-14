@@ -68,6 +68,15 @@ var app = new Vue({
         }
       });
       return new_array;
+    },
+    xhr_message: function xhr_message() {
+      var msg = "Sorry, I can't give result due to some errors.";
+
+      if (this.xhr_okay === true) {
+        msg = "Update in ".concat(this.update_date, " by ").concat(this.updater);
+      }
+
+      return msg;
     }
   },
   mounted: function mounted() {

@@ -143,8 +143,8 @@
 </article>
         </main>
         <footer>
-            <a v-bind:href="updated_url" v-if="xhr_okay===true"> Last update was in {{ update_date }} by {{ updater }} </a>
-            <span v-else> {{ xhr_fail_msg }} </span>
+            <a v-bind:href="updated_url" v-if="xhr_okay===true"> {{ xhr_message }} </a>
+            <span v-else> {{ xhr_message }} </span>
         </footer>
     </div>
     <script src="js/jquery-3.2.1.min.js"></script>
