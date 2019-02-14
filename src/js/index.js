@@ -8,6 +8,7 @@ const app  = new Vue
             xhr_fail_msg:"Sorry, I can't give result due to some errors.",
             xhr_okay:false,
             repo_api:"https://api.github.com/repos/iigmir/new-profile/git/refs/heads/master",
+            commit_info: {},
             updated_url:"",
             update_date:"",
             updater:"",
@@ -111,7 +112,7 @@ const app  = new Vue
     {
         request_log()
         {
-            let get_repo = ( url ) =>
+            let get_repo = (url) =>
             {
                 fetch( url )
                 .then( repo_res => repo_res.json() )
@@ -128,6 +129,7 @@ const app  = new Vue
         ajax_render(info)
         {
             this.xhr_okay = true;
+            this.commit_info = info;
             this.updated_url = info.html_url;
             this.updater = info.committer.name;
             this.update_date = new Date(info.committer.date).toLocaleString();
