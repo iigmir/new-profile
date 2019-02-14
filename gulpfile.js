@@ -6,10 +6,10 @@ const extender    = require('gulp-html-extend');
 
 gulp.task('browser-sync', function()
 {
-    browserSync.init
-    ({
+    let browserSync_setting = {
         server: { baseDir: "./docs" }
-    });
+    };
+    browserSync.init(browserSync_setting);
 });
 
 gulp.task('jscompress', function(cb)
@@ -24,19 +24,24 @@ gulp.task('jscompress', function(cb)
 
 gulp.task('sass', function()
 {
+    let sass_setting = {
+        outputStyle: "compressed"
+    };
     return gulp.src("src/scss/*.scss")
-        .pipe(gulpSass({
-            outputStyle: 'compressed'
-        }))
-        .pipe(gulp.dest("docs/css"))
-        .pipe(browserSync.stream());
+    .pipe(gulpSass(sass_setting))
+    .pipe(gulp.dest("docs/css"))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('html', function()
 {
-    gulp.src('src/html/index.html')
-        .pipe(extender({annotations:false,verbose:true}))
-        .pipe(gulp.dest('./docs'));
+    let extender_setting = {
+        annotations:false,
+        verbose:true
+    };
+    return gulp.src('src/html/index.html')
+    .pipe(extender(extender_setting))
+    .pipe(gulp.dest('./docs'));
 });
 
 gulp.task('watch', function ()
