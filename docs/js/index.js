@@ -13,6 +13,10 @@ var app = new Vue({
       update_date: "",
       updater: "",
       works_src: [{
+        name: "Blog",
+        link: "https://iigmir.github.io/blog",
+        text: "部落格"
+      }, {
         name: "民國西元換算器",
         link: "https://addons.mozilla.org/en-US/firefox/addon/minguoyear-convert",
         text: "把民國紀元與西元互換的小套件。"
@@ -24,10 +28,6 @@ var app = new Vue({
         name: "New profile in Codepen",
         link: "https://codepen.io/iigmir/pen/MrxmgK",
         text: "Codepen 作品概覽"
-      }, {
-        name: "OpenStreetMap Notes",
-        link: "https://iigmir.github.io/osm-notes",
-        text: "介接 OpenStreetMap 的筆記"
       }, {
         name: "Takami",
         link: "https://github.com/iigmir/Takami",
